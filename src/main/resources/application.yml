@@ -1,0 +1,6 @@
+auth0:
+  issuer: "https://acnbank.auth0.com/"
+  apiAudience: "https://acnbank.auth0.com/userinfo"
+
+management.endpoints.web.exposure.include: "*"
+
