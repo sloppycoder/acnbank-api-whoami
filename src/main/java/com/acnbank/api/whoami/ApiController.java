@@ -29,7 +29,27 @@ public class ApiController {
             log.info("{}", decoded);
             return decoded;
         } else {
-            return "";
+            return "{}";
         }
+    }
+
+    @RequestMapping("/offers")
+    @PreAuthorize("#oauth2.hasScope('api:prelogin')")
+    public String getOffers() {
+        log.info("sending offers....");
+        return "{\"offers\" : [] }";
+    }
+
+    @RequestMapping("/transactions")
+    @PreAuthorize("#oauth2.hasScope('api:authenticated')")
+    public String getTransactionHistory() {
+        log.info("sending transactions history....");
+        return "{\"transactions\" : [] }";
+    }
+
+    @RequestMapping("/transfers")
+    @PreAuthorize("#oauth2.hasScope('api:mfa')")
+    public String performFundTransfer() {
+        return "{\"status\" : \"success\"}";
     }
 }

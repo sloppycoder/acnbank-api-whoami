@@ -1,6 +1,6 @@
 auth0:
   issuer: "https://acnbank.auth0.com/"
-  apiAudience: "https://acnbank.auth0.com/userinfo"
+  apiAudience: "https://gate.acn.dev/acn-api"
 
 management.endpoints.web.exposure.include: "*"
 
