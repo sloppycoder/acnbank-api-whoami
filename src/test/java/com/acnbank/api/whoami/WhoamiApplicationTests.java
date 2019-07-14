@@ -25,6 +25,11 @@ public class WhoamiApplicationTests {
     }
 
     @Test
+    public void actuator_works() throws Exception {
+        mockMvc.perform(get("/actuator/info")).andExpect(status().isOk());
+    }
+
+    @Test
     @Ignore
     // not working after enable oauth2
     public void api_whoami_works() throws Exception {
