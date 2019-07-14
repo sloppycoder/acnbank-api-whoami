@@ -1,10 +1,11 @@
 package com.acnbank.api.whoami;
 
-import com.auth0.spring.security.api.authentication.AuthenticationJsonWebToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,21 +17,19 @@ import java.util.Base64;
 public class ApiController {
 
     @RequestMapping("/whoami")
-    @PreAuthorize("hasRole('USER')")
     public String decipherAccessToken() {
         return getDecodedToken();
     }
 
     private String getDecodedToken() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth instanceof AuthenticationJsonWebToken) {
-            String token = ((AuthenticationJsonWebToken) auth).getToken();
+        if (auth instanceof OAuth2Authentication) {
+            String token = ((OAuth2AuthenticationDetails) ((OAuth2Authentication) auth).getDetails()).getTokenValue();
             String decoded = new String(Base64.getUrlDecoder().decode(token.split("\\.")[1]));
             log.info("{}", decoded);
             return decoded;
-        } else {
-            return "{}";
         }
+        return "not an OAUTH2 access token";
     }
 
     @RequestMapping("/offers")

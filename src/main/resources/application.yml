@@ -1,6 +1,6 @@
-auth0:
-  issuer: "https://acnbank.auth0.com/"
-  apiAudience: "https://gate.acn.dev/acn-api"
+security.oauth2.resource:
+  jwk.key-set-uri: https://acnbank.auth0.com/.auth0.com/.well-known/jwks.json
 
-management.endpoints.web.exposure.include: "*"
+management:
+  web.exposure.include: "*"
 
