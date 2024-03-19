@@ -1,5 +1,9 @@
-security.oauth2.resource:
-  jwk.key-set-uri: https://acnbank.auth0.com/.auth0.com/.well-known/jwks.json
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://acnbank.auth0.com/.auth0.com/.well-known/jwks.json
 
 
 management:
@@ -15,4 +19,4 @@ management:
     beans:
       enabled: false
 
-custom.resource.audience: https://gate.acn.dev/acn-api
+# custom.resource.audience: https://gate.acn.dev/acn-api
