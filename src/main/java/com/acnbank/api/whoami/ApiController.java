@@ -2,6 +2,8 @@ package com.acnbank.api.whoami;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiController {
 
     @RequestMapping("/whoami")
-    public String decipherAccessToken() {
-        return "hello...";
+    public String whoAmI(@AuthenticationPrincipal Jwt jwt) {
+        var sub = jwt.getClaim("sub");
+        var email = jwt.getClaim("email");
+        return String.format("hello %s, your email is %s", sub, email);
     }
 
     @RequestMapping("/offers")

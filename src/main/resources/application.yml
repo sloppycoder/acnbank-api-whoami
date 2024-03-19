@@ -3,7 +3,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://acnbank.auth0.com/.auth0.com/.well-known/jwks.json
+          public-key-location: 'classpath:/pub.pem'
 
 
 management:
@@ -13,10 +13,5 @@ management:
         include:
           - info
           - health
-          - metrics
-          - loggers
-  endpoint:
-    beans:
-      enabled: false
 
 # custom.resource.audience: https://gate.acn.dev/acn-api
