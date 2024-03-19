@@ -1,0 +1,25 @@
+{
+    "name": "vino9-java17-spring",
+    "image": "mcr.microsoft.com/devcontainers/java:17-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "none",
+            "installGradle": "false",
+            "installMaven": "true"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vmware.vscode-boot-dev-pack",
+                "yzhang.markdown-all-in-one"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "forwardPorts": [
+        8080
+    ],
+    "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
